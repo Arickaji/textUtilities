@@ -1,24 +1,67 @@
-import logo from './logo.svg';
 import './App.css';
+import NavBar from './components/NavBar';
+import TextArea from './components/TextArea';
+import Alert from './components/Alert';
+import React, { useState } from 'react'
+
 
 function App() {
+  const [Mode, setMode] = useState("light")
+  const [msg, setMsg] = useState(null)
+
+  const showMsg = (message, type) => {
+    setMsg({
+      msg: message,
+      type: type
+    })
+
+    setTimeout(() => {
+      setMsg("")
+    }, 1500);
+  }
+
+  const toggleMode = () => {
+    if (Mode === "light") {
+      setMode("dark")
+      document.body.style.backgroundColor = "#49538a";
+      showMsg("Dark Mode Enable", "success")
+    }
+    else {
+      setMode("light")
+      document.body.style.backgroundColor = "white";
+      showMsg("Light Mode Enable", "success")
+    }
+  }
+
+  const CobaltMode = () => {
+    if (Mode === "light") {
+      setMode("cobalt")
+      document.body.style.backgroundColor = "#193549";
+      showMsg("Cobalt Mode Enable", "success")
+    }
+    else {
+      setMode("light")
+      document.body.style.backgroundColor = "white";
+      showMsg("Light Mode Enable", "success")
+    }
+  }
+
+
+  const ToggleLabels = () => {
+    if (Mode === "light") {
+      return "black"
+    }
+    else {
+      return "white"
+    }
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <NavBar title="TextUtilities" toggle={toggleMode} Mode={Mode} toggleLabel={ToggleLabels()} cobaltMode={CobaltMode} />
+      <Alert alert={msg} />
+      <TextArea title="Enter Your Text" toggleLabel={ToggleLabels()} showAlert={showMsg} />
+    </div >
   );
 }
 
