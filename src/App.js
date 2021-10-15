@@ -3,7 +3,12 @@ import NavBar from './components/NavBar';
 import TextArea from './components/TextArea';
 import Alert from './components/Alert';
 import React, { useState } from 'react'
-
+import About from './components/About';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 
 function App() {
   const [Mode, setMode] = useState("light")
@@ -46,7 +51,6 @@ function App() {
     }
   }
 
-
   const ToggleLabels = () => {
     if (Mode === "light") {
       return "black"
@@ -57,11 +61,20 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <NavBar title="TextUtilities" toggle={toggleMode} Mode={Mode} toggleLabel={ToggleLabels()} cobaltMode={CobaltMode} />
-      <Alert alert={msg} />
-      <TextArea title="Enter Your Text" toggleLabel={ToggleLabels()} showAlert={showMsg} />
-    </div >
+    <Router>
+      <div className="App">
+        <NavBar title="TextUtilities" toggle={toggleMode} Mode={Mode} toggleLabel={ToggleLabels()} cobaltMode={CobaltMode} />
+        <Alert alert={msg} />
+        <Switch>
+          <Route exact path="/about">
+            <About toggleLabel={ToggleLabels()} />
+          </Route>
+          <Route exact path="/">
+            <TextArea title="Enter Your Text" toggleLabel={ToggleLabels()} showAlert={showMsg} />
+          </Route>
+        </Switch>
+      </div >
+    </Router>
   );
 }
 
