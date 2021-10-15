@@ -1,6 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 function NavBar(props) {
+    let SwtichStyle = {
+        marginLeft: "auto",
+        marginRight: 0
+    }
     return (
         <div className="nav">
             <nav className={`navbar navbar-expand-lg navbar-light bg-${props.Mode}`} style={{ width: "100%" }}>
@@ -15,9 +19,11 @@ function NavBar(props) {
                             <a className={`nav-link text-${props.toggleLabel}`} href="/">Features</a>
                             <Link className={`nav-link text-${props.toggleLabel}`} to="/about">About</Link>
                         </div>
-                        <div className="form-check form-switch">
-                            <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onClick={props.toggle} />
-                            <label className={`form-check-label text-${props.toggleLabel}`} htmlFor="flexSwitchCheckDefault">Black Mode</label>
+                        <div style={SwtichStyle}>
+                            <div className="form-check form-switch">
+                                <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onClick={props.toggle} />
+                                <label className={`form-check-label text-${props.toggleLabel}`} htmlFor="flexSwitchCheckDefault">Black Mode</label>
+                            </div>
                         </div>
                     </div>
                 </div>
