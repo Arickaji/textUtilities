@@ -13,6 +13,9 @@ import {
 function App() {
   const [Mode, setMode] = useState("light")
   const [msg, setMsg] = useState(null)
+  const [disableBtn,setDisableBtn] = useState(false)
+  const [disableBtn2,setDisableBtn2] = useState(false)
+
 
   const showMsg = (message, type) => {
     setMsg({
@@ -30,8 +33,10 @@ function App() {
       setMode("dark")
       document.body.style.backgroundColor = "#49538a";
       showMsg("Dark Mode Enable", "success")
+      setDisableBtn2(true)
     }
     else {
+      setDisableBtn2(false)
       setMode("light")
       document.body.style.backgroundColor = "white";
       showMsg("Light Mode Enable", "success")
@@ -43,8 +48,10 @@ function App() {
       setMode("cobalt")
       document.body.style.backgroundColor = "#193549";
       showMsg("Cobalt Mode Enable", "success")
+      setDisableBtn(true)
     }
     else {
+      setDisableBtn(false)
       setMode("light")
       document.body.style.backgroundColor = "white";
       showMsg("Light Mode Enable", "success")
@@ -63,7 +70,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <NavBar title="TextUtilities" toggle={toggleMode} Mode={Mode} toggleLabel={ToggleLabels()} cobaltMode={CobaltMode} />
+        <NavBar title="TextUtilities" cobalt={CobaltMode} toggle={toggleMode} Mode={Mode} toggleLabel={ToggleLabels()} cobaltMode={CobaltMode} DisableBtn={disableBtn} SecondBtnDis={disableBtn2}/>
         <Alert alert={msg} />
         <Switch>
           <Route exact path="/about">

@@ -21,7 +21,13 @@ function NavBar(props) {
                         </div>
                         <div style={SwtichStyle}>
                             <div className="form-check form-switch">
-                                <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onClick={props.toggle} />
+                                <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onClick={props.cobalt} disabled={props.SecondBtnDis} />
+                                <label className={`form-check-label text-${props.toggleLabel}`} htmlFor="flexSwitchCheckDefault">Cobalt Mode</label>
+                            </div>
+                        </div>
+                        <div style={SwtichStyle}>
+                            <div className="form-check form-switch">
+                                <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onClick={props.toggle} disabled={props.DisableBtn}/>
                                 <label className={`form-check-label text-${props.toggleLabel}`} htmlFor="flexSwitchCheckDefault">Black Mode</label>
                             </div>
                         </div>
